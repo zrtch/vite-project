@@ -1,12 +1,14 @@
-import './index.scss'
-import styles from './index.module.scss'
-import styled from 'styled-components'
+import "./index.scss";
+import styles from "./index.module.scss";
+import styled from "styled-components";
 
 const Button = styled.button`
   width: 100px;
   color: white;
   background: skyblue;
-`
+`;
+
+const get = () => {};
 
 export function Header() {
   return (
@@ -16,5 +18,5 @@ export function Header() {
       <Button>CSS In JS 之 styled-components</Button>
       <p className="bg-red-400">Tillwin css</p>
     </>
-  )
+  );
 }
