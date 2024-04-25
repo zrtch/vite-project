@@ -59,12 +59,12 @@
   "config": {
     "commitizen": {
       "path": "node_modules/cz-conventional-changelog"
-    },
-    "lint-staged": {
-      "**/*.{js,jsx,tsx,ts}": [
-        "npm run lint:script",
-        "git add ."
-      ]
     }
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,tsx,ts}": [
+      "npm run lint:script",
+      "git add ."
+    ]
   }
 }
