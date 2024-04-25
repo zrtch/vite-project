@@ -8,7 +8,9 @@ const Button = styled.button`
   background: skyblue;
 `;
 
-const get = () => {};
+const get = () => {
+  return 2;
+};
 
 export function Header() {
   return (
@@ -17,6 +19,7 @@ export function Header() {
       <p className={styles.bheader}>CSS Modules</p>
       <Button>CSS In JS 之 styled-components</Button>
       <p className="bg-red-400">Tillwin css</p>
+      <p>{get()}</p>
     </>
   );
 }

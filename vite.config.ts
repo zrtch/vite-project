@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react";
 import path from "path";
 import autoprefixer from "autoprefixer";
 import tailwindcss from "tailwindcss";
+import checker from "vite-plugin-checker";
 
 // 全局 scss 文件的路径
 // 用 normalizePath 解决 window 下的路径问题
@@ -42,6 +43,14 @@ export default defineConfig({
           // 适配 styled-component
           "babel-plugin-styled-components"
         ]
+      }
+    }),
+    checker({
+      // e.g. use TypeScript check
+      typescript: true,
+      eslint: {
+        // for example, lint .ts and .tsx
+        lintCommand: 'eslint "./src/**/*.{ts,tsx}"'
       }
     })
   ]
