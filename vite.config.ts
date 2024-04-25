@@ -4,12 +4,20 @@ import path from "path";
 import autoprefixer from "autoprefixer";
 import tailwindcss from "tailwindcss";
 import checker from "vite-plugin-checker";
+import svgr from "vite-plugin-svgr";
+import imagemin from "unplugin-imagemin/vite";
 
 // 全局 scss 文件的路径
 // 用 normalizePath 解决 window 下的路径问题
 const variablePath = normalizePath(path.resolve("./src/variable.scss"));
 
+// 是否为生产环境，在生产环境一般会注入 NODE_ENV 这个环境变量，见下面的环境变量文件配置
+const isProduction = process.env.NODE_ENV === "production";
+// 填入项目的 CDN 域名地址
+const CDN_URL = "https://sanyuan.cos.ap-beijing.myqcloud.com";
+
 export default defineConfig({
+  base: isProduction ? CDN_URL : "/",
   css: {
     // 预处理器配置
     preprocessorOptions: {
@@ -47,11 +55,25 @@ export default defineConfig({
     }),
     checker({
       // e.g. use TypeScript check
-      typescript: true,
-      eslint: {
-        // for example, lint .ts and .tsx
-        lintCommand: 'eslint "./src/**/*.{ts,tsx}"'
-      }
-    })
-  ]
+      typescript: true
+      // eslint: {
+      //   // for example, lint .ts and .tsx
+      //   lintCommand: 'eslint "./src/**/*.{ts,tsx}"'
+      // }
+    }),
+    // SVG 组件方式加载
+    svgr(),
+    // 图片压缩
+    imagemin()
+  ],
+  resolve: {
+    // 别名配置
+    alias: {
+      "@/assets": path.join(__dirname, "src/assets")
+    }
+  },
+  build: {
+    // 4 KB即为提取成单文件的临界值
+    assetsInlineLimit: 4 * 1024
+  }
 });
