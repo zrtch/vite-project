@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import MySvg from "@/assets/imgs/vite.svg?react";
 import { version } from "../../../package.json";
 import Worker from "./example.js?worker";
+import imageminPng from "@/assets/imgs/wallhave.jpg";
 
 const Button = styled.button`
   width: 100px;
@@ -54,6 +55,10 @@ export function Header() {
           }
           alt=""
         />
+      </div>
+      <div>
+        图片压缩
+        <img width={200} height={400} src={imageminPng} alt="" />
       </div>
     </div>
   );
