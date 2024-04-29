@@ -22,6 +22,10 @@ worker.addEventListener("message", (e) => {
   console.log(e);
 });
 
+// Vite 中提供了import.meta.glob的语法糖来解决这种批量导入的问题
+const icons = import.meta.glob("../../assets/icons/logo-*.svg");
+console.log("🤩  icons:", icons);
+
 export function Header() {
   useEffect(() => {
     const img = document.getElementById("logo") as HTMLImageElement;
