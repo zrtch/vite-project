@@ -61,7 +61,7 @@ export function Header() {
         />
       </div>
       <div>
-        图片压缩
+        图片压缩：
         <img width={200} height={400} src={imageminPng} alt="" />
       </div>
     </div>
