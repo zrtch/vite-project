@@ -75,5 +75,17 @@ export default defineConfig({
   build: {
     // 4 KB即为提取成单文件的临界值
     assetsInlineLimit: 4 * 1024
+  },
+  optimizeDeps: {
+    exclude: ["@loadable/component"],
+    include: [
+      // 间接依赖的声明语法，通过`>`分开, 如`a > b`表示 a 中依赖的 b
+      "@loadable/component > hoist-non-react-statics"
+    ],
+    esbuildOptions: {
+      plugins: [
+        // 加入 Esbuild 插件
+      ]
+    }
   }
 });
