@@ -6,6 +6,7 @@ import tailwindcss from "tailwindcss";
 import checker from "vite-plugin-checker";
 import svgr from "vite-plugin-svgr";
 import imagemin from "unplugin-imagemin/vite";
+import virtual from "./src/plugins/virtual-module";
 
 // 全局 scss 文件的路径
 // 用 normalizePath 解决 window 下的路径问题
@@ -64,7 +65,8 @@ export default defineConfig({
     // SVG 组件方式加载
     svgr(),
     // 图片压缩
-    imagemin()
+    imagemin(),
+    virtual()
   ],
   resolve: {
     // 别名配置

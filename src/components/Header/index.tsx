@@ -6,7 +6,7 @@ import viteLogo from "@/assets/imgs/vite.svg";
 import { useEffect } from "react";
 import MySvg from "@/assets/imgs/vite.svg?react";
 import { version } from "../../../package.json";
-import Worker from "./example.js?worker";
+// import Worker from "./example.js?worker";
 import imageminPng from "@/assets/imgs/wallhave.jpg";
 
 const Button = styled.button`
@@ -16,11 +16,11 @@ const Button = styled.button`
 `;
 
 // 1. 初始化 Worker 实例
-const worker = new Worker();
-// 2. 主线程监听 worker 的信息
-worker.addEventListener("message", (e) => {
-  console.log(e);
-});
+// const worker = new Worker();
+// // 2. 主线程监听 worker 的信息
+// worker.addEventListener("message", (e) => {
+//   console.log(e);
+// });
 
 // Vite 中提供了import.meta.glob的语法糖来解决这种批量导入的问题
 const icons = import.meta.glob("../../assets/icons/logo-*.svg");
