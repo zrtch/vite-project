@@ -7,6 +7,7 @@ import checker from "vite-plugin-checker";
 import svgr from "vite-plugin-svgr";
 import imagemin from "unplugin-imagemin/vite";
 import virtual from "./src/plugins/virtual-module";
+import inspect from "vite-plugin-inspect";
 
 // 全局 scss 文件的路径
 // 用 normalizePath 解决 window 下的路径问题
@@ -66,7 +67,9 @@ export default defineConfig({
     svgr(),
     // 图片压缩
     imagemin(),
-    virtual()
+    virtual(),
+    // 开发调试
+    inspect()
   ],
   resolve: {
     // 别名配置
