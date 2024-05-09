@@ -89,6 +89,20 @@ export default defineConfig({
     }
   },
   build: {
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            // 让每个插件都打包成独立的文件
+            return id
+              .toString()
+              .split("node_modules/")[1]
+              .split("/")[0]
+              .toString();
+          }
+        }
+      }
+    },
     // 4 KB即为提取成单文件的临界值
     assetsInlineLimit: 4 * 1024
   },
