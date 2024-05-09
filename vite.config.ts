@@ -9,6 +9,8 @@ import imagemin from "unplugin-imagemin/vite";
 import virtual from "./src/plugins/virtual-module";
 import inspect from "vite-plugin-inspect";
 import { visualizer } from "rollup-plugin-visualizer";
+import ViteRestart from "vite-plugin-restart";
+import viteCompression from "vite-plugin-compression";
 
 // 全局 scss 文件的路径
 // 用 normalizePath 解决 window 下的路径问题
@@ -72,7 +74,13 @@ export default defineConfig({
     // 开发调试
     inspect(),
     // 打包分析插件
-    visualizer()
+    visualizer(),
+    // 监听文件修改，自动重启vite
+    ViteRestart({
+      restart: ["my.config.[jt]s"]
+    }),
+    // 压缩资源
+    viteCompression()
   ],
   resolve: {
     // 别名配置
