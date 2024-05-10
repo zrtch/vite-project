@@ -74,7 +74,10 @@ export default defineConfig({
     // 开发调试
     inspect(),
     // 打包分析插件
-    visualizer(),
+    visualizer({
+      // 打包完成后自动打开浏览器，显示产物体积报告
+      open: true
+    }),
     // 监听文件修改，自动重启vite
     ViteRestart({
       restart: ["my.config.[jt]s"]
@@ -91,15 +94,22 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks(id) {
-          if (id.includes("node_modules")) {
-            // 让每个插件都打包成独立的文件
-            return id
-              .toString()
-              .split("node_modules/")[1]
-              .split("/")[0]
-              .toString();
-          }
+        // manualChunks(id) {
+        //   if (id.includes("node_modules")) {
+        //     // 让每个插件都打包成独立的文件
+        //     return id
+        //       .toString()
+        //       .split("node_modules/")[1]
+        //       .split("/")[0]
+        //       .toString();
+        //   }
+        // }
+        // 1. 对象配置
+        manualChunks: {
+          // 将 React 相关库打包成单独的 chunk 中
+          "react-vendor": ["react", "react-dom"],
+          // 将组件库的代码打包
+          library: ["styled-components"]
         }
       }
     },
